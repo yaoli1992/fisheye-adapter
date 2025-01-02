@@ -1,0 +1,16 @@
+dataset_path: "dataset/kalibr"
+
+# possible models : EUCM, DS, UCM, KB, OcamCalib, RadTan
+input_model: "KB"
+output_model: "OcamCalib"
+
+image_name: "image.png"
+show_image: false
+
+sample_point: 500
+
+result_path: "result"
+save_result: true
+
+display_optimization_progress: true
+evaluation: false
