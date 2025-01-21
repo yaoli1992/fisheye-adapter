@@ -1,11 +1,11 @@
 dataset_path: "dataset/kalibr"
 
-# possible models : EUCM, DS, UCM, KB, OcamCalib, RadTan
+# possible models : EUCM, DS, UCM, KB, OcamCalib, RadTan   MY(my new model)
 input_model: "KB"
-output_model: "OcamCalib"
+output_model: "MY"
 
 image_name: "image.png"
-show_image: false
+show_image: true
 
 sample_point: 500
 

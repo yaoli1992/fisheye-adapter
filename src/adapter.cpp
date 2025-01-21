@@ -99,14 +99,18 @@ void Adapter::show_image(const std::string & result_path)
   cv::imwrite(result_path + "/input_to_output_model_image.png", input_output_model_image);
   cv::waitKey(0);
 }
+
 void Adapter::prepare_data(
   std::vector<Eigen::Vector2d> & original_point2d_vec,
   std::vector<Eigen::Vector2d> & input_point2d_vec,
   std::vector<Eigen::Vector2d> & output_point2d_vec)
 {
+  std::cout<< "prepare_data !! "<<std::endl;
   const auto & common_params = output_model_->get_common_params();
+
   for (auto x = 0; x < common_params.width; ++x) {
     for (auto y = 0; y < common_params.height; ++y) {
+  
       Eigen::Vector2d point2d(x, y);
       const Eigen::Vector3d input_point3d = input_model_->unproject(point2d, false);
       // const Eigen::Vector3d output_point3d = output_model_->unproject(point2d, false);

@@ -31,6 +31,9 @@ SOFTWARE.
 #include "model/base.hpp"
 #include "utils.hpp"
 
+
+//./main ./example/config.yml
+
 namespace fs = std::filesystem;
 
 int main(int argc, char ** argv)
@@ -39,6 +42,7 @@ int main(int argc, char ** argv)
 
   fs::path project_dir = PROJECT_SOURCE_DIR;//当前工程的路径
   fs::path config_path = project_dir / argv[1];//输入的config文件
+std::cout<< "config_path : "<<config_path<<std::endl;
 
   const YAML::Node config = YAML::LoadFile(config_path.string());
 

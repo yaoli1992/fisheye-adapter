@@ -23,6 +23,7 @@ set(SOURCE_FILES
         src/model/KB.cpp
         src/model/OcamCalib.cpp
         src/model/UCM.cpp
+        src/model/else.cpp
         )
 add_library(${PACKAGE_NAME}
         ${SOURCE_FILES}

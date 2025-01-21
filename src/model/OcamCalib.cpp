@@ -126,6 +126,7 @@ void OcamCalib::initialize(
   distortion_.unproj_coeffs = std::vector<double>(x.data(), x.data() + x.size());
 }
 
+//将3D点投影到图像坐标系下
 Eigen::Vector2d OcamCalib::project(const Eigen::Vector3d & point3d, bool condition) const
 {
   const double X = point3d.x();
@@ -183,9 +184,10 @@ Eigen::Vector3d OcamCalib::unproject(const Eigen::Vector2d & point2d, bool condi
   return point3d;
 }
 
-//根据像素点和3D点优化parameters这几个参数
+
 bool OcamCalib::check_proj_condition(double z) { return z > 0.0; }
 
+//根据像素点和3D点优化parameters这几个参数
 void OcamCalib::optimize(
   const std::vector<Eigen::Vector3d> & point3d_vec,
   const std::vector<Eigen::Vector2d> & point2d_vec, bool display_optimization_progress)
@@ -317,6 +319,7 @@ void OcamCalib::save_result(const std::string & result_path) const
     std::cout << "Result saved to: " << result_path + "/" + model_name_ + ".yml" << std::endl;
 }
 
+//根据计算出来的反畸变参数再次将3D点投影到图像上，并计算出畸变系数
 void OcamCalib::estimate_projection_coefficients()
 {
   constexpr auto MAX_POLY_NUM = 12;
@@ -380,6 +383,7 @@ void OcamCalib::estimate_projection_coefficients()
   distortion_.proj_coeffs = coefficient_candidates.at(best_poly_num);
 }
 
+//计算重投影误差
 double OcamCalib::calculate_average_error(
   const std::vector<Eigen::Vector3d> & point3d_vec,
   const std::vector<Eigen::Vector2d> & point2d_vec)
